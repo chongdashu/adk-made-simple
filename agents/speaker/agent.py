@@ -28,14 +28,23 @@ async def create_agent():
     llm = LiteLlm(model="gemini/gemini-1.5-flash-latest", api_key=os.environ.get("GOOGLE_API_KEY"))
 
     # Create the TTS Speaker agent
+    # NOTE: These instructions are carefully structured to ensure proper response format
+    # for both TaskManager extraction and test_a2a_extract_audio.sh validation.
+    # The TaskManager looks for the audio path in function_response.response.result.content[0].text
+    # and specifically looks for the pattern "File saved as: /path/to/file.mp3. Voice used: X"
+    # The a2a_speaker_app.py and test script both expect data.audio_url to contain the path
     agent_instance = Agent(
         name="tts_speaker_agent",
         description="Converts provided text into speech using ElevenLabs TTS MCP.",
         instruction=(
-            "You are a Text-to-Speech agent. Take the text provided by the user or coordinator and "
-            "use the available ElevenLabs TTS tool to convert it into audio. "
-            "When calling the text_to_speech tool, set the parameter 'voice_name' to 'Will'. "
-            "Return the result from the tool (expected to be a URL)."
+            "You are a Text-to-Speech agent. Convert user text to speech audio files.\n\n"
+            "IMPORTANT FORMATTING RULES:\n"
+            "1. Always call the text_to_speech tool with voice_name='Will'\n"
+            "2. When the tool returns a file path, format your response like this example:\n"
+            "   'I've converted your text to speech. The audio file is saved at `/path/to/file.mp3`'\n"
+            "3. Make sure to put ONLY the file path inside backticks (`), not any additional text\n"
+            "4. Never modify or abbreviate the path\n\n"
+            "This exact format is critical for proper processing."
         ),
         model=llm,
         tools=tools,
