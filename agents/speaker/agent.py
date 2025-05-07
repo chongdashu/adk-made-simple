@@ -28,6 +28,11 @@ async def create_agent():
     llm = LiteLlm(model="gemini/gemini-1.5-flash-latest", api_key=os.environ.get("GOOGLE_API_KEY"))
 
     # Create the TTS Speaker agent
+    # NOTE: These instructions are carefully structured to ensure proper response format
+    # for both TaskManager extraction and test_a2a_extract_audio.sh validation.
+    # The TaskManager looks for the audio path in function_response.response.result.content[0].text
+    # and specifically looks for the pattern "File saved as: /path/to/file.mp3. Voice used: X"
+    # The a2a_speaker_app.py and test script both expect data.audio_url to contain the path
     agent_instance = Agent(
         name="tts_speaker_agent",
         description="Converts provided text into speech using ElevenLabs TTS MCP.",

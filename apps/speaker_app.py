@@ -34,7 +34,6 @@ API Assumptions:
 5. Responses follow the ADK event structure with model outputs and function calls/responses
 
 """
-
 import streamlit as st
 import requests
 import json
@@ -81,14 +80,13 @@ def create_session():
     API Endpoint:
         POST /apps/{app_name}/users/{user_id}/sessions/{session_id}
     """
-
     session_id = f"session-{int(time.time())}"
     response = requests.post(
         f"{API_BASE_URL}/apps/{APP_NAME}/users/{st.session_state.user_id}/sessions/{session_id}",
         headers={"Content-Type": "application/json"},
         data=json.dumps({})
     )
-
+    
     if response.status_code == 200:
         st.session_state.session_id = session_id
         st.session_state.messages = []
@@ -97,7 +95,6 @@ def create_session():
     else:
         st.error(f"Failed to create session: {response.text}")
         return False
-
 
 def send_message(message):
     """
@@ -123,14 +120,13 @@ def send_message(message):
         - Looks for text_to_speech function responses to find audio file paths
         - Adds both text and audio information to the chat history
     """
-
     if not st.session_state.session_id:
         st.error("No active session. Please create a session first.")
         return False
     
     # Add user message to chat
     st.session_state.messages.append({"role": "user", "content": message})
-
+    
     # Send message to API
     response = requests.post(
         f"{API_BASE_URL}/run",
@@ -145,18 +141,18 @@ def send_message(message):
             }
         })
     )
-
+    
     if response.status_code != 200:
         st.error(f"Error: {response.text}")
         return False
     
     # Process the response
     events = response.json()
-
-     # Extract assistant's text response
+    
+    # Extract assistant's text response
     assistant_message = None
     audio_file_path = None
-
+    
     for event in events:
         # Look for the final text response from the model
         if event.get("content", {}).get("role") == "model" and "text" in event.get("content", {}).get("parts", [{}])[0]:

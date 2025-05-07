@@ -33,8 +33,9 @@
 #   ...
 # ]
 
+# The app_name should match the full Python import path from the project root
 APP_NAME="speaker"
-USER_ID="testuser"
+USER_ID="test-user"
 SESSION_ID="test-audio-extraction-$(date +%s)"  # Unique session ID
 
 # Step 1: Create session explicitly
@@ -59,12 +60,9 @@ RESPONSE=$(curl -s -X POST "http://localhost:8000/run" \
     }
   }")
 
-  # Print the full response for reference
+# Print the full response for reference
 echo "Full response:"
 echo "$RESPONSE" | jq .
-
-# Extract information about where the audio file was saved
-echo "Extracting audio file information..."
 
 # Extract information about where the audio file was saved
 echo "Extracting audio file information..."
@@ -106,3 +104,12 @@ VOICE_NAME=$(echo "$RESPONSE" | jq -r '.[] | select(.content.parts[].functionCal
 if [ -n "$VOICE_NAME" ] && [ "$VOICE_NAME" != "null" ]; then
   echo "Voice used: $VOICE_NAME"
 fi
+
+echo "For Streamlit app development: Note that the audio is saved to a local file path on the server side."
+echo "The Streamlit app will need to either:"
+echo "1. Serve these files via a static file server"
+echo "2. Read the files and convert to base64 for embedding in the UI"
+echo "3. Modify the agent to return audio data directly instead of saving to disk"
+
+# Note: This requires jq to be installed for parsing the JSON response
+# and grep for extracting file paths 

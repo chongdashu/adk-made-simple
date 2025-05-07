@@ -1,0 +1,12 @@
+{
+  "name": "speaker_agent",
+  "description": "Text-to-speech agent that converts written content to spoken audio using Eleven Labs",
+  "endpoints": ["run", "health", "speak"],
+  "version": "1.0.0",
+  "capabilities": ["text_to_speech", "audio_synthesis", "voice_selection"],
+  "input_format": "text/plain",
+  "output_format": "application/json",
+  "dependencies": ["elevenlabs"],
+  "author": "ADK Made Simple",
+  "documentation": "https://github.com/yourusername/adk-made-simple"
+} 
