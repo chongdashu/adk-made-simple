@@ -10,7 +10,8 @@ Full series playlist: [ADK Made Simple Playlist](https://www.youtube.com/playlis
 | ------ | ---- | ----------- |
 | 1      | [Lesson 1: Basics of ADK & Reddit Scout Agent](https://www.youtube.com/watch?v=BiP4tKZKTvU) | Basics of ADK, Building a Reddit news agent with PRAW |
 | 2      | [Lesson 2: Multi-Agent Systems & TTS](https://www.youtube.com/watch?v=FODBW9az-sw) | Combining ADK with MCP, Multi-Agent Systems, Text-To-Speech with ElevenLabs, LiteLLM |
-| 3      | [Lesson 3: Building Custom UIs for the Speaker Agent](lessons/lesson3.md) | Agent Deployment: Standalone A2A vs. `adk api_server`, Custom UI Development with Streamlit |
+| 3      | [Lesson 3: Custom UI for Speaker Agent (ADK API Server)](https://www.youtube.com/watch?v=jrFFEPWoB1Q) | Building a Streamlit UI for the Speaker Agent using the ADK API server (no A2A yet) |
+| 4      | [Lesson 4: Serving Agents via A2A Protocol](https://www.youtube.com/@AIOriented?sub_confirmation=1) | Introducing the A2A protocol, running agents as standalone A2A services, and building UIs for A2A agents |
 
 ## Agents
 
