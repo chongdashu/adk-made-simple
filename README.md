@@ -4,6 +4,14 @@ This project demonstrates simple agents built using the Google Agent Development
 
 Full series playlist: [ADK Made Simple Playlist](https://www.youtube.com/playlist?list=PLWUH7ke1DYK98Di2FF8Ux3IX6qG-mZ3A7)
 
+## ☕ Support the Project
+
+If you find this tutorial series and codebase helpful in your AI agent development journey, consider buying me a coffee! Your support helps me create more educational content on AI and agent development.
+
+<a href="https://buymeacoffee.com/aioriented" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
+</a>
+
 ## Lessons
 
 | Lesson | Link | Description |
