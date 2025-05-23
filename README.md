@@ -19,7 +19,7 @@ If you find this tutorial series and codebase helpful in your AI agent developme
 | 1      | [Lesson 1: Basics of ADK & Reddit Scout Agent](https://www.youtube.com/watch?v=BiP4tKZKTvU) | Basics of ADK, Building a Reddit news agent with PRAW |
 | 2      | [Lesson 2: Multi-Agent Systems & TTS](https://www.youtube.com/watch?v=FODBW9az-sw) | Combining ADK with MCP, Multi-Agent Systems, Text-To-Speech with ElevenLabs, LiteLLM |
 | 3      | [Lesson 3: Custom UI for Speaker Agent (ADK API Server)](https://www.youtube.com/watch?v=jrFFEPWoB1Q) | Building a Streamlit UI for the Speaker Agent using the ADK API server (no A2A yet) |
-| 4      | [Lesson 4: Serving Agents via A2A Protocol](https://www.youtube.com/@AIOriented?sub_confirmation=1) | Introducing the A2A protocol, running agents as standalone A2A services, and building UIs for A2A agents |
+| 4      | [Lesson 4: Serving Agents via A2A Protocol](https://www.youtube.com/watch?v=NKBkj3bMfHk) | Introducing the A2A protocol, running agents as standalone A2A services, and building UIs for A2A agents |
 
 ## Agents
 
