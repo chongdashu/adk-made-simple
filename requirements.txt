@@ -1,4 +1,4 @@
-google-adk
+google-adk==0.3.0
 praw
 python-dotenv 
 litellm
