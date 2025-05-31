@@ -12,26 +12,16 @@ from speaker.agent import create_agent as create_speaker_agent
 # Load environment variables (for GOOGLE_API_KEY)
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '..', '.env'))
 
-async def create_coordinator_agent():
+def create_coordinator_agent():
     """Creates the Coordinator agent that delegates to Reddit Scout, Summarizer, and Speaker sub-agents."""
 
-    # Manage multiple exit stacks for async sub-agents
-    exit_stack = AsyncExitStack()
-    await exit_stack.__aenter__()
+    reddit_agent = create_reddit_scout_agent()
 
-    # Instantiate Reddit (async) and enter its exit stack
-    reddit_agent, reddit_stack = await create_reddit_scout_agent()
-    await exit_stack.enter_async_context(reddit_stack)
-
-    # Instantiate Summarizer (sync)
     summarizer_agent = create_summarizer_agent()
 
-    # Instantiate Speaker (async) and enter its exit stack
-    speaker_agent, speaker_stack = await create_speaker_agent()
-    await exit_stack.enter_async_context(speaker_stack)
+    speaker_agent = create_speaker_agent()
 
-    # Define a multi-model coordinator LLM
-    coordinator_llm = LiteLlm(model="gemini/gemini-1.5-pro-latest", api_key=os.environ.get("GOOGLE_API_KEY"))
+    coordinator_llm = LiteLlm(model="gemini/gemini-2.0-flash", api_key=os.environ.get("GOOGLE_API_KEY"))
 
     # Create the Coordinator agent
     coordinator = Agent(
@@ -48,6 +38,6 @@ async def create_coordinator_agent():
         sub_agents=[reddit_agent, summarizer_agent, speaker_agent]
     )
 
-    return coordinator, exit_stack
+    return coordinator
 
 root_agent = create_coordinator_agent()
